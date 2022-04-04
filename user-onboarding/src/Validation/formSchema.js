@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const formSchema =yup.object().shape({
+const formSchema = yup.object().shape({
     username: yup
     .string()
     .trim()
@@ -10,7 +10,7 @@ const formSchema =yup.object().shape({
     .string()
     .email('Must be a valid email address')
     .required('Email is required!!!'),
-    password: yup
+    password: yup                            
     .string()
     .required('Password is required!!!')
     .min(8, 'Password must be 8 characters long'),

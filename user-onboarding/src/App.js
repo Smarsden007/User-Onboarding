@@ -6,10 +6,14 @@ import "./App.css";
 
 import schema from "./validation/formSchema";
 
+import * as yup from 'yup';
+
 import Form from "./Components/Form";
 
+
+
 const initialFormValues = {
-  username: "",
+  username: '',
   password: "",
   email: "",
   tos: false,
@@ -19,30 +23,30 @@ const initialFormErrors = {
   username: "",
   password: "",
   email: "",
-  tos: "",
+  tos: ""
 };
 
 function App() {
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [formErrors, setErrors] = useState(initialFormErrors);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [users, setUsers] = useState([]);
-
+////API Below- has been tested and data is being rec.
   const handleSubmit = () => {
     axios
-      .post("https://reqres.in/api/users", formValues)
+      .post(`https://reqres.in/api/users`, formValues)
       .then((res) => {
-        setUsers([res.data, ...users]);
+        setUsers([ res.data, ...users ]);
 
-        // console.log(res)
+         console.log(res)
       })
       .catch((err) => console.log(err));
   };
 
   const validate = (name, value) => {
-    yup
-      .reach(schema, name)
+    
+    yup.reach(schema, name)
       .validate(value)
-      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .then(() => setFormErrors({ ...formErrors, [name]: '' }))
       .catch((err) => setFormErrors({ ...formErrors, [name]: err.errors[0] }));
   };
 
@@ -59,7 +63,7 @@ function App() {
         errors={formErrors}
         submit={handleSubmit}
       />
-      {users.map((user) => (
+      {users.map(user => (
         <div key={user.id}>
           <p>{user.createdAt}</p>
           <p>{user.email}</p>

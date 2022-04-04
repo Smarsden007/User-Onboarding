@@ -18,16 +18,16 @@ const Form = (props) => {
 
   return (
     <div>
-      <h1>My magic form!!!</h1>
-      <p>{error.username}</p>
+      <h1>React Sign Up</h1>
+      <p>{errors.username}</p>
       <p>{errors.password}</p>
-      <p>{error.email}</p>
-      <p>{error.tos}</p>
+      <p>{errors.email}</p>
+      <p>{errors.tos}</p>
       <form onSubmit={onSubmit}>
         <label>
           {" "}
           Name:
-          <input type="text" name="name" value={username} onChange={onChange} />
+          <input type="text" name="username" value={username} onChange={onChange} />
         </label>
         <label>
           {" "}
